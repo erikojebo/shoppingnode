@@ -1,0 +1,13 @@
+CREATE TABLE List
+(
+    Id SERIAL UNIQUE NOT NULL,
+    Description VARCHAR(255) NOT NULL,
+    Done BOOLEAN NOT NULL
+);
+
+CREATE TABLE AddCounts
+(
+    Id SERIAL UNIQUE NOT NULL,
+    Description VARCHAR(255) NOT NULL,
+    Count INTEGER NOT NULL
+);
