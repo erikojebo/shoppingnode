@@ -4,15 +4,18 @@ var foo = "";
 
 pg.connect(process.env.DATABASE_URL, function(err, client) {
 
+    foo = "error?";
     if (err) {
-        foo = err;
+        foo += err;
         return;
     }
+
+    foo += "executing query, client: " + JSON.stringify(client);
 
     var query = client.query('SELECT * FROM List');
 
     query.on('row', function(row) {
-        foo = JSON.stringify(row);
+        foo += JSON.stringify(row);
     });
 });
 
