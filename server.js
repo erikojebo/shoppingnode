@@ -5,7 +5,7 @@ var foo = "";
 pg.connect(process.env.DATABASE_URL, function(err, client) {
 
     if (err) {
-
+        foo = err;
         return;
     }
 
