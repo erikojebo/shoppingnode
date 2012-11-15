@@ -1,19 +1,20 @@
 var pg = require('pg');
-console.log("database url: " + process.env.DATABASE_URL);
-// pg.connect(process.env.DATABASE_URL, function(err, client) {
 
-//     if (err) {
-//         console.log(err);
-//         return;
-//     }
+var foo = "";
 
-//     var query = client.query('SELECT * FROM List');
+pg.connect(process.env.DATABASE_URL, function(err, client) {
 
-//     query.on('row', function(row) {
-//         console.log(JSON.stringify(row));
-//     });
-// });
+    if (err) {
 
+        return;
+    }
+
+    var query = client.query('SELECT * FROM List');
+
+    query.on('row', function(row) {
+        foo = JSON.stringify(row);
+    });
+});
 
 var express = require('express');
 
@@ -25,5 +26,5 @@ app.get('/', function(request, response) {
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
-  console.log("Listening on " + port);
+  console.log("Listening on " + port + ", foo: " + foo);
 });
