@@ -10,7 +10,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
         return;
     }
 
-    foo += "executing query, client: " + JSON.stringify(client);
+    foo += "executing query";
 
     var query = client.query('SELECT * FROM List');
 
