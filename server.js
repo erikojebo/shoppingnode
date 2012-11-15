@@ -1,18 +1,18 @@
 var pg = require('pg');
 console.log("database url: " + process.env.DATABASE_URL);
-pg.connect(process.env.DATABASE_URL, function(err, client) {
+// pg.connect(process.env.DATABASE_URL, function(err, client) {
 
-    if (err) {
-        console.log(err);
-        return;
-    }
+//     if (err) {
+//         console.log(err);
+//         return;
+//     }
 
-    // var query = client.query('SELECT * FROM List');
+//     var query = client.query('SELECT * FROM List');
 
-    // query.on('row', function(row) {
-    //     console.log(JSON.stringify(row));
-    //});
-});
+//     query.on('row', function(row) {
+//         console.log(JSON.stringify(row));
+//     });
+// });
 
 
 var express = require('express');
