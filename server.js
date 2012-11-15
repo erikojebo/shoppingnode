@@ -7,11 +7,11 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
         return;
     }
 
-    var query = client.query('SELECT * FROM List');
+    // var query = client.query('SELECT * FROM List');
 
-    query.on('row', function(row) {
-        console.log(JSON.stringify(row));
-    });
+    // query.on('row', function(row) {
+    //     console.log(JSON.stringify(row));
+    //});
 });
 
 
