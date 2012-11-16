@@ -24,23 +24,15 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 });
 
 var express = require('express');
-
+var fileServer = require('./file_server.js');
 var app = express.createServer(express.logger());
 
 app.get('/', function (request, response) {
-    fs.readFile('./list.html', function(error, content) {
-        if (error) {
-            response.writeHead(500);
-            response.end();
-        }
-        else {
-            response.writeHead(200, { 'Content-Type': 'text/html' });
-            response.end(content, 'utf-8');
-        }
-    });
+    fileServer.serve('./list.html', request, response);
 });
 
 app.get('/list.css', function (request, response) {
+    
     fs.readFile('./list.css', function(error, content) {
         if (error) {
             response.writeHead(500);
