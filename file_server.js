@@ -8,7 +8,7 @@ var contentTypes = {
 
 var getContentType = function (path) {
 	var parts = path.split('.');
-    var extension = parts[parts.lenght - 1];
+    var extension = parts[parts.length - 1];
     return contentTypes[extension];
 }
 
@@ -19,6 +19,8 @@ var serveFile = function (path, request, response) {
             response.end();
         }
         else {
+            console.log("Serving file: " + path);
+            console.log("Content type:" + getContentType(path));
             response.writeHead(200, { 'Content-Type': getContentType(path) });
             response.end(content, 'utf-8');
         }

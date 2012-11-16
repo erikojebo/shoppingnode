@@ -1,3 +1,10 @@
+function addFileRoute(requestedPath, actualPath) {
+	var filePath = actualPath || '.' + requestedPath;
+    app.get(requestedPath, function (request, response) {
+	    fileServer.serve(filePath, request, response);
+    });
+}
+
 console.log("Starting...");
 
 var pg = require('pg');
@@ -27,17 +34,9 @@ var express = require('express');
 var fileServer = require('./file_server.js');
 var app = express.createServer(express.logger());
 
-app.get('/', function (request, response) {
-    fileServer.serve('./list.html', request, response);
-});
-
-app.get('/list.css', function (request, response) {
-    fileServer.serve('./list.css', request, response);
-});
-
-app.get('/list.js', function (request, response) {
-    fileServer.serve('./list.js', request, response);
-});
+addFileRoute('/', './list.html');
+addFileRoute('/list.js');
+addFileRoute('/list.css');
 
 var port = process.env.PORT || 5000;
 
