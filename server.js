@@ -1,5 +1,9 @@
 var pg = require('pg');
 
+if (process.env.ENVIRONMENT === "development") {
+    pg = pg.native
+}
+
 var foo = "";
 
 pg.connect(process.env.DATABASE_URL, function(err, client) {
