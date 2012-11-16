@@ -3,7 +3,6 @@ console.log("Starting...");
 var pg = require('pg');
 
 if (process.env.ENVIRONMENT === "development") {
-    pg = pg.native
     console.log("dev environment detected");
 }
 

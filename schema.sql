@@ -2,7 +2,8 @@ CREATE TABLE List
 (
     Id SERIAL UNIQUE NOT NULL,
     Description VARCHAR(255) NOT NULL,
-    Done BOOLEAN NOT NULL
+    Done BOOLEAN NOT NULL,
+    Category INTEGER NOT NULL
 );
 
 CREATE TABLE AddCounts
