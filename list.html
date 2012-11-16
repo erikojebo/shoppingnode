@@ -7,8 +7,10 @@
   </head>
   <body>
     <h1>Shopping Node</h1>
-    <ul id='categories'>
-      
+    <ul id='categories' data-bind='foreach: items'>
+      <li>
+        <span data-bind="text: description"></span>
+      </li>
     </ul>
   </body>
 </html>

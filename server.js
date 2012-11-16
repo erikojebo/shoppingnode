@@ -14,19 +14,13 @@ if (process.env.ENVIRONMENT === "development") {
     console.log("dev environment detected");
 }
 
-var foo = "";
+var items = [];
 
 pg.connect(process.env.DATABASE_URL, function(err, client) {
-
-    if (err) {
-        foo += err;
-        return;
-    }
-    
     var query = client.query('SELECT * FROM List');
 
     query.on('row', function(row) {
-        foo += JSON.stringify(row);
+        items.push(row);
     });
 });
 
@@ -37,6 +31,11 @@ var app = express.createServer(express.logger());
 addFileRoute('/', './list.html');
 addFileRoute('/list.js');
 addFileRoute('/list.css');
+app.get('/items', function (request, response) {
+    response.writeHead(200, { 'Content-Type': 'application/json'});
+    var content = JSON.stringify(items);
+    response.end(content, 'utf-8');
+})
 
 var port = process.env.PORT || 5000;
 
