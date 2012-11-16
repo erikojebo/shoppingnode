@@ -32,30 +32,11 @@ app.get('/', function (request, response) {
 });
 
 app.get('/list.css', function (request, response) {
-    
-    fs.readFile('./list.css', function(error, content) {
-        if (error) {
-            response.writeHead(500);
-            response.end();
-        }
-        else {
-            response.writeHead(200, { 'Content-Type': 'text/css' });
-            response.end(content, 'utf-8');
-        }
-    });
+    fileServer.serve('./list.css', request, response);
 });
 
 app.get('/list.js', function (request, response) {
-    fs.readFile('./list.js', function(error, content) {
-        if (error) {
-            response.writeHead(500);
-            response.end();
-        }
-        else {
-            response.writeHead(200, { 'Content-Type': 'text/javascript' });
-            response.end(content, 'utf-8');
-        }
-    });
+    fileServer.serve('./list.js', request, response);
 });
 
 var port = process.env.PORT || 5000;
