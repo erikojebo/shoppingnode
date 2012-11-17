@@ -9,7 +9,7 @@
     <h1>Shopping Node</h1>
     <ul id='categories' data-bind='foreach: items'>
       <li>
-        <span data-bind="text: description"></span>
+        <span data-bind="text: description, css: { done: done }"></span>
       </li>
     </ul>
   </body>
