@@ -1,24 +1,37 @@
 var viewModelFactory = function () {
-	function createShoppingListViewModel (data) {
-	    var itemViewModels = data.map(function (item) {
+    function createItemViewModels (items) {
+	    return items.map(function (item) {
 	        return new ItemViewModel(item);
         });
+    };
 
-        var categoryIds = _.uniq(itemViewModels.map(function (item) {
-            return item.category();
-        }));
+    function getCategoryIds(items) {
+        return _.uniq(items.map(function (item) {
+            return item.category;
+        })).sort();
+    };
+    
+    function createCategoryViewModel(id, itemViewModels) {
+        var items = itemViewModels.filter(function (item) {
+	        return item.category() == id;
+        });
 
-        var categoryViewModels = categoryIds.sort().map(function (id) {
+        return new CategoryViewModel(id, items);
+    };
 
-            var items = itemViewModels.filter(function (item) {
-	            return item.category() == id;
-            });
+    function createCategoryViewModels(items) {
+	    var itemViewModels = createItemViewModels(items);
+        var categoryIds = getCategoryIds(items);
 
-            return new CategoryViewModel(id, items);
-        })
-        
+        return categoryIds.map(function (id) {
+            return createCategoryViewModel(id, itemViewModels);
+        });
+    };
+
+	function createShoppingListViewModel (items) {
+        var categories = createCategoryViewModels(items);
         return {
-            categories: ko.observableArray(categoryViewModels)
+            categories: ko.observableArray(categories)
         };
     };
 
