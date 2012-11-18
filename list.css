@@ -67,3 +67,23 @@ li .done {
     text-decoration: line-through;
     color: #cecece;
 }
+
+li.category {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    margin: 5px 10px;
+    max-width: 300px;
+}
+
+li.category li {
+    margin: 5px 0px;
+}
+
+.category0 {
+    background: blue;
+}
+
+.category1 {
+    background: red;
+}

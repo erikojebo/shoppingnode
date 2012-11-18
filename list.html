@@ -1,16 +1,22 @@
 <html>
   <head>
     <link href="list.css" rel="stylesheet" type="text/css">
+    <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script language="JavaScript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.js"></script>
     <script language="JavaScript" src="list.js"></script>
   </head>
   <body>
     <h1>Shopping Node</h1>
-    <ul id='categories' data-bind='foreach: items'>
-      <li>
-        <span data-bind="text: description, css: { done: done }"></span>
+    <ol data-bind='foreach: categories'>
+      <li class='category' data-bind='css: name'>
+        <ul id='categories' data-bind='foreach: items'>
+          <li data-bind="click: toggleIsDone">
+            <span data-bind="text: description, css: { done: isDone }"></span>
+          </li>
+        </ul>
       </li>
-    </ul>
+    </ol>
+
   </body>
 </html>
