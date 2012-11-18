@@ -1,3 +1,32 @@
+var viewModelFactory = function () {
+	function createShoppingListViewModel (data) {
+	    var itemViewModels = data.map(function (item) {
+	        return new ItemViewModel(item);
+        });
+
+        var categoryIds = _.uniq(itemViewModels.map(function (item) {
+            return item.category();
+        }));
+
+        var categoryViewModels = categoryIds.sort().map(function (id) {
+
+            var items = itemViewModels.filter(function (item) {
+	            return item.category() == id;
+            });
+
+            return new CategoryViewModel(id, items);
+        })
+        
+        return {
+            categories: ko.observableArray(categoryViewModels)
+        };
+    };
+
+    return {
+        createShoppingListViewModel: createShoppingListViewModel
+    }
+}();
+
 var shoppingListViewModel = {};
 
 var CategoryViewModel = function(id, items) {
@@ -21,30 +50,7 @@ var ItemViewModel = function (item) {
 
 $(document).ready(function () {
     $.getJSON('/items', function(data) {
-        shoppingListViewModel = createShoppingListViewModel(data);
+        shoppingListViewModel = viewModelFactory.createShoppingListViewModel(data);
         ko.applyBindings(shoppingListViewModel);
     });
 });
-
-function createShoppingListViewModel (data) {
-	var itemViewModels = data.map(function (item) {
-	    return new ItemViewModel(item);
-    });
-
-    var categoryIds = _.uniq(itemViewModels.map(function (item) {
-        return item.category();
-    }));
-
-    var categoryViewModels = categoryIds.sort().map(function (id) {
-
-        var items = itemViewModels.filter(function (item) {
-	        return item.category() == id;
-        });
-
-        return new CategoryViewModel(id, items);
-    })
-    
-    return {
-        categories: ko.observableArray(categoryViewModels)
-    };
-}
