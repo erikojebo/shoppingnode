@@ -3,7 +3,8 @@ var fs = require('fs');
 var contentTypes = {
     "js" : "text/javascript",
     "css" : "text/css",
-    "html" : "text/html"
+    "html" : "text/html",
+    "ttf" : "application/octet-stream"
 }
 
 var getContentType = function (path) {
@@ -15,6 +16,7 @@ var getContentType = function (path) {
 var serveFile = function (path, request, response) {
     fs.readFile(path, function(error, content) {
         if (error) {
+            console.log("Error serving file: " + path + "(" + error + ")");
             response.writeHead(500);
             response.end();
         }

@@ -1,3 +1,4 @@
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -49,8 +50,20 @@ table {
 
 /* END OF CSS RESET */
 
+@font-face {
+	font-family: metrophobic;
+	src: url('fonts/metrophobic/metrophobic.ttf');
+}
+
+@font-face {
+	font-family: sanchez;
+	src: url('fonts/sanchez/regular.ttf');
+}
+
 body {
-    font-family: sans-serif;
+    font-family: metrophobic, sanchez, sans-serif;
+    background: black;
+    color: white;
 }
 
 h1 {
@@ -65,7 +78,6 @@ ul {
 
 li .done {
     text-decoration: line-through;
-    color: #cecece;
 }
 
 li.category {
@@ -82,9 +94,34 @@ li.category li {
 }
 
 .category0 {
-    background: blue;
+    background: #FF0097;
 }
 
 .category1 {
-    background: red;
+    background: #F09609;
 }
+
+.category2 {
+    background: #8CBF26;
+}
+
+.category3 {
+    background: #00ABA9;
+}
+
+.category4 {
+    background: #1BA1E2;
+}
+
+.category5 {
+    background: #A200FF;
+}
+
+.category6 {
+    background: #E671B8;
+}
+
+.category7 {
+    background: #339933;
+}
+

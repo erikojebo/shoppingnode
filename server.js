@@ -23,6 +23,8 @@ addFileRoute('/list.css');
 addFileRoute('/lib/underscore-min.js');
 addFileRoute('/lib/jquery-1.8.3.min.js');
 addFileRoute('/lib/knockout-2.2.0.js');
+addFileRoute('/fonts/metrophobic/metrophobic.ttf');
+addFileRoute('/fonts/sanchez/regular.ttf');
 
 app.get('/items', function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json'});
