@@ -25,6 +25,10 @@ addFileRoute('/lib/jquery-1.8.3.min.js');
 addFileRoute('/lib/knockout-2.2.0.js');
 addFileRoute('/fonts/metrophobic/metrophobic.ttf');
 addFileRoute('/fonts/sanchez/regular.ttf');
+addFileRoute('/images/delete.png');
+addFileRoute('/images/add.png');
+addFileRoute('/images/favs.png');
+addFileRoute('/images/refresh.png');
 
 app.get('/items', function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json'});

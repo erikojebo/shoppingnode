@@ -8,6 +8,9 @@
   </head>
   <body>
     <h1>Shopping Node</h1>
+    <a id='clearDoneButton'><img src='images/delete.png' alt='Clear done items' /></a>
+    <a id='synchButton'><img src='images/refresh.png' alt='Synchronize list' /></a>
+    <a id='addItemsButton'><img src='images/add.png' alt='Add items' /></a>
     <ol data-bind='foreach: categories'>
       <li class='category' data-bind='css: name'>
         <ul id='categories' data-bind='foreach: items'>

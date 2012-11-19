@@ -64,10 +64,11 @@ body {
     font-family: metrophobic, sanchez, sans-serif;
     background: black;
     color: white;
+    margin: 10px;
 }
 
 h1 {
-    margin: 10px;
+    margin: 10px 0px;
     font-size: 30px;
     text-transform: lowercase;
 }
@@ -84,13 +85,18 @@ li.category {
     border-width: 1px;
     border-color: black;
     border-style: solid;
-    margin: 5px 10px;
+    margin: 5px 0px;
     max-width: 300px;
 }
 
 li.category li {
     margin: 5px 0px;
     cursor: pointer;
+}
+
+a img {
+    height: 32px;
+    width: 32px;
 }
 
 .category0 {
