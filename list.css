@@ -78,6 +78,7 @@ li.category {
 
 li.category li {
     margin: 5px 0px;
+    cursor: pointer;
 }
 
 .category0 {
