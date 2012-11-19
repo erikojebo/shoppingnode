@@ -68,9 +68,10 @@ body {
 }
 
 h1 {
-    margin: 10px 0px;
+    margin: 10px 10px 10px 0px;
     font-size: 30px;
     text-transform: lowercase;
+    display: inline-block;
 }
 
 ul {
@@ -86,7 +87,7 @@ li.category {
     border-color: black;
     border-style: solid;
     margin: 5px 0px;
-    max-width: 300px;
+    max-width: 318px;
 }
 
 li.category li {
