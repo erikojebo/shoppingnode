@@ -6,23 +6,12 @@ var connectionString = function () {
 
 var findAll = function (onSuccess, onError) {
 
-    pg.connect(connectionString(), function(err, client) {
-        if (err && onError) {
-            onError(err);
-            return;
-        }
+    var onQuerySuccess = function (result) {
+	    console.log("findAll found %d items",result.rowCount);
+        onSuccess(result.rows);
+    };
 
-        client.query("SELECT * FROM List", function(err, result) {
-
-            if (err && onError) {
-                onError(err);
-                return;
-            }
-
-            console.log("findAll found %d items",result.rowCount);
-            onSuccess(result.rows);
-        });
-    });
+    executeQuery("SELECT * FROM List", onQuerySuccess, onError);
 }
 
 var clearDone = function (onSuccess, onError) {
@@ -44,6 +33,26 @@ var clearDone = function (onSuccess, onError) {
         });
     });
 };
+
+function executeQuery (queryString, onSuccess, onError) {
+
+    pg.connect(connectionString(), function(err, client) {
+        if (err && onError) {
+            onError(err);
+            return;
+        }
+
+        client.query(queryString, function(err, result) {
+
+            if (err && onError) {
+                onError(err);
+                return;
+            }
+
+            onSuccess(result);
+        });
+    });
+}
 
 module.exports = {
     findAll: findAll,
