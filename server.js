@@ -1,3 +1,7 @@
+function logError (message) {
+	console.log("ERROR: " + message);
+}
+
 function addFileRoute(requestedPath, actualPath) {
 	var filePath = actualPath || '.' + requestedPath;
     app.get(requestedPath, function (request, response) {
@@ -35,6 +39,8 @@ app.get('/items', function (request, response) {
     db.findAll(function (items) {
         var content = JSON.stringify(items);
         response.end(content, 'utf-8');
+    }, function (error) {
+        logError("findAll failed: " + error)
     });
 })
 

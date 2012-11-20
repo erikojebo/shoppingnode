@@ -1,23 +1,51 @@
 var pg = require('pg');
 
-var findAll = function (success) {
+var connectionString = function () {
+	return process.env.DATABASE_URL;
+}
 
-    pg.connect(process.env.DATABASE_URL, function(err, client) {
-        var query = client.query('SELECT * FROM List');
+var findAll = function (onSuccess, onError) {
 
-        var items = [];
+    pg.connect(connectionString(), function(err, client) {
+        if (err && onError) {
+            onError(err);
+            return;
+        }
 
-        query.on('row', function(row) {
-            items.push(row);
-        });
+        client.query("SELECT * FROM List", function(err, result) {
 
-        query.on('end', function(result) {
-            console.log("findAll: found " + result.rowCount + " items");
-            success(items); 
+            if (err && onError) {
+                onError(err);
+                return;
+            }
+
+            console.log("findAll found %d items",result.rowCount);
+            onSuccess(result.rows);
         });
     });
 }
 
+var clearDone = function (onSuccess, onError) {
+    pg.connect(connectionString(), function(err, client) {
+        if (err) {
+            onError(err);
+            return;
+        }
+
+        client.query("DELETE FROM List WHERE done = true", function(err, result) {
+
+            if (err) {
+                onError(error);
+                return;
+            }
+
+            console.log("Cleared %d done items",result.rowCount);
+            onSuccess();
+        });
+    });
+};
+
 module.exports = {
-    findAll: findAll
+    findAll: findAll,
+    clearDone: clearDone
 }
