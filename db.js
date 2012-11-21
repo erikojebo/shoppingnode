@@ -1,4 +1,5 @@
 var pg = require('pg');
+var logger = require('./logger.js');
 
 var connectionString = function () {
 	return process.env.DATABASE_URL;
@@ -7,7 +8,7 @@ var connectionString = function () {
 var findAll = function (onSuccess, onError) {
 
     var onQuerySuccess = function (result) {
-	    console.log("findAll found %d items",result.rowCount);
+        logger.logInfo("findAll found %d items",result.rowCount)
         onSuccess(result.rows);
     };
 
@@ -15,23 +16,13 @@ var findAll = function (onSuccess, onError) {
 }
 
 var clearDone = function (onSuccess, onError) {
-    pg.connect(connectionString(), function(err, client) {
-        if (err) {
-            onError(err);
-            return;
-        }
 
-        client.query("DELETE FROM List WHERE done = true", function(err, result) {
+    var onQuerySuccess = function (result) {
+	    logger.logInfo("Cleared %d done items".format(result.rowCount));
+        onSuccess();
+    };
 
-            if (err) {
-                onError(error);
-                return;
-            }
-
-            console.log("Cleared %d done items",result.rowCount);
-            onSuccess();
-        });
-    });
+    executeQuery("DELETE FROM List WHERE done = true", onQuerySuccess, onError);
 };
 
 function executeQuery (queryString, onSuccess, onError) {

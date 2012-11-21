@@ -1,7 +1,3 @@
-function logError (message) {
-	console.log("ERROR: " + message);
-}
-
 function addFileRoute(requestedPath, actualPath) {
 	var filePath = actualPath || '.' + requestedPath;
     app.get(requestedPath, function (request, response) {
@@ -9,17 +5,18 @@ function addFileRoute(requestedPath, actualPath) {
     });
 }
 
-console.log("Starting...");
-
-if (process.env.ENVIRONMENT === "development") {
-    console.log("dev environment detected");
-}
-
-
+require('./extensions.js')
+var logger = require('./logger.js');
 var express = require('express');
 var fileServer = require('./file_server.js');
 var db = require('./db.js');
 var app = express.createServer(express.logger());
+
+logger.logInfo("Starting server...");
+
+if (process.env.ENVIRONMENT === "development") {
+    logger.logInfo("Dev environment detected");
+}
 
 addFileRoute('/', './list.html');
 addFileRoute('/list.js');
@@ -40,12 +37,12 @@ app.get('/items', function (request, response) {
         var content = JSON.stringify(items);
         response.end(content, 'utf-8');
     }, function (error) {
-        logError("findAll failed: " + error)
+        logger.logError("findAll failed: " + error)
     });
 })
 
 var port = process.env.PORT || 5000;
 
 app.listen(port, function() {
-  console.log("Listening on " + port);
+    logger.logInfo("Listening on port: " + port);
 });
