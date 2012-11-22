@@ -136,4 +136,8 @@ a img {
     body {
         width: 100%;
     }
+    li.category {
+        max-width: 100%;
+        width: 100%;
+    }
 }
