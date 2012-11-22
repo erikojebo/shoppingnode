@@ -1,3 +1,5 @@
+delete from list;
+
 insert into list (description, done, category) values ('Mjölk', false, 2);
 insert into list (description, done, category) values ('Yoghurt', false, 2);
 insert into list (description, done, category) values ('Creme fraiche', false, 2);
