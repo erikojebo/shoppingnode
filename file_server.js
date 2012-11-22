@@ -5,7 +5,8 @@ var contentTypes = {
     "js" : "text/javascript",
     "css" : "text/css",
     "html" : "text/html",
-    "ttf" : "application/octet-stream"
+    "ttf" : "application/x-font-ttf",
+    "png" : "image/png"
 }
 
 var getContentType = function (path) {
