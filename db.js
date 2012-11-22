@@ -8,7 +8,7 @@ var connectionString = function () {
 var findAll = function (onSuccess, onError) {
 
     var onQuerySuccess = function (result) {
-        logger.logInfo("findAll found %d items",result.rowCount)
+        logger.logInfo("findAll found {0} items", result.rowCount)
         onSuccess(result.rows);
     };
 
@@ -18,7 +18,7 @@ var findAll = function (onSuccess, onError) {
 var clearDone = function (onSuccess, onError) {
 
     var onQuerySuccess = function (result) {
-	    logger.logInfo("Cleared %d done items".format(result.rowCount));
+	    logger.logInfo("Cleared {0} done items", result.rowCount);
         onSuccess();
     };
 
