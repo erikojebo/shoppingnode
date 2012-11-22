@@ -132,7 +132,7 @@ a img {
     background: #339933;
 }
 
-@media only screen and (min-device-width: 480px){
+@media only screen and (max-device-width: 480px){
     body {
         width: 100%;
         font-size: 40px;
