@@ -190,4 +190,10 @@ a img {
         margin-left: 20px;
     }
 
+    @media orientation:landscape {
+        body {
+            font-size: 35px;
+        }
+    }
 }
+
