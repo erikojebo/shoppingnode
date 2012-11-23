@@ -189,11 +189,10 @@ a img {
         width: 128px;
         margin-left: 20px;
     }
-
-    @media orientation:landscape {
-        body {
-            font-size: 35px;
-        }
-    }
 }
 
+@media only screen and (orientation:landscape) {
+    body {
+        font-size: 35px;
+    }
+}
