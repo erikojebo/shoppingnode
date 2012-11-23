@@ -93,11 +93,13 @@ li.category {
 li.category li {
     margin: 5px 0px;
     cursor: pointer;
+    user-select: none;
 }
 
 a img {
     height: 32px;
     width: 32px;
+    user-select: none;
 }
 
 .category0 {
@@ -135,7 +137,7 @@ a img {
 @media only screen and (max-device-width: 480px){
     body {
         width: 100%;
-        font-size: 40px;
+        font-size: 55px;
     }
     
     h1 {
@@ -154,8 +156,8 @@ a img {
     }
 
     a img {
-        height: 64px;
-        width: 64px;
+        height: 128px;
+        width: 128px;
     }
 
 }
