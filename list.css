@@ -94,6 +94,7 @@ li.category li {
     margin: 5px 0px;
     cursor: pointer;
     user-select: none;
+    user-focus: normal;
 }
 
 a img {
