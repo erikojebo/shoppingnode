@@ -28,6 +28,8 @@ addFileRoute('/fonts/metrophobic/metrophobic.ttf');
 addFileRoute('/fonts/sanchez/regular.ttf');
 addFileRoute('/images/delete.png');
 addFileRoute('/images/add.png');
+addFileRoute('/images/metro_add_128.png');
+addFileRoute('/images/metro_delete_128.png');
 addFileRoute('/images/favs.png');
 addFileRoute('/images/refresh.png');
 

@@ -71,6 +71,10 @@ body {
     margin: 10px;
 }
 
+#content {
+    max-width: 318px;
+}
+
 h1 {
     margin: 10px 10px 10px 0px;
     font-size: 30px;
@@ -92,7 +96,6 @@ li.category {
     border-color: black;
     border-style: solid;
     margin: 5px 0px;
-    max-width: 318px;
 }
 
 li.category li {
@@ -106,7 +109,9 @@ li.category li {
 a img {
     height: 32px;
     width: 32px;
+    margin-left: 5px;
     user-select: none;
+    float: right;
 }
 
 .category0 {
@@ -150,10 +155,13 @@ a img {
     h1 {
         font-size: 70px;
     }
-    
-    li.category {
+ 
+    #content {
         max-width: 100%;
         width: 100%;
+    }
+   
+    li.category {
         margin: 30px 0px;
         padding: 20px;
     }
@@ -165,6 +173,7 @@ a img {
     a img {
         height: 128px;
         width: 128px;
+        margin-left: 20px;
     }
 
 }
