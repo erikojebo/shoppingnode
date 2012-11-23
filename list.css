@@ -60,8 +60,12 @@ table {
 	src: url('fonts/sanchez/regular.ttf');
 }
 
+*:focus {
+    outline: none;
+}
+
 body {
-    font-family: metrophobic, sanchez, sans-serif;
+    font-family: metrophobic, sans-serif;
     background: black;
     color: white;
     margin: 10px;
@@ -80,6 +84,7 @@ ul {
 
 li .done {
     text-decoration: line-through;
+    opacity: 0.5
 }
 
 li.category {
@@ -96,7 +101,6 @@ li.category li {
     user-select: none;
     user-focus: normal;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    -webkit-user-modify: read-write-plaintext-only;
 }
 
 a img {
