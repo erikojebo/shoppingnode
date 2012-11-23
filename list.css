@@ -152,7 +152,7 @@ a img {
     background: #339933;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
     body {
         width: 100%;
         font-size: 35px;
@@ -191,7 +191,7 @@ a img {
     }
 }
 
-@media only screen and (max-width: 400px){
+@media only screen and (max-width: 800px){
     body {
         font-size: 55px;
     }
