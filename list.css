@@ -75,6 +75,9 @@ body {
     max-width: 318px;
 }
 
+header {
+}
+
 h1 {
     margin: 10px 10px 10px 0px;
     font-size: 30px;
@@ -158,7 +161,11 @@ a img {
     h1 {
         font-size: 90px;
     }
- 
+
+    header {
+        padding-bottom: 10px;
+    }
+
     menu {
         height: 128px;
     }

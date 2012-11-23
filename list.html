@@ -9,11 +9,13 @@
   </head>
   <body>
     <div id="content">
-      <h1>Shopping Node</h1>
-      <menu>
-        <a id='clearDoneButton'><img src='images/metro_delete_128.png' alt='Clear done items' /></a>
-        <a id='addItemsButton'><img src='images/metro_add_128.png' alt='Add items' /></a>
-      </menu>
+      <header>
+        <h1>Shopping Node</h1>
+        <menu>
+          <a id='clearDoneButton'><img src='images/metro_delete_128.png' alt='Clear done items' /></a>
+          <a id='addItemsButton'><img src='images/metro_add_128.png' alt='Add items' /></a>
+        </menu>
+      </header>
       <ol data-bind='foreach: categories'>
         <li class='category' data-bind='css: name'>
           <ul id='categories' data-bind='foreach: items'>
