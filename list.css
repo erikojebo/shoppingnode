@@ -106,12 +106,15 @@ li.category li {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
+menu {
+    float: right;
+}
+
 a img {
     height: 32px;
     width: 32px;
     margin-left: 5px;
     user-select: none;
-    float: right;
 }
 
 .category0 {
@@ -153,9 +156,13 @@ a img {
     }
     
     h1 {
-        font-size: 70px;
+        font-size: 90px;
     }
  
+    menu {
+        height: 128px;
+    }
+
     #content {
         max-width: 100%;
         width: 100%;
