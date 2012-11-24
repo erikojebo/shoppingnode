@@ -152,49 +152,13 @@ a img {
     background: #339933;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 700px) {
     body {
         width: 100%;
-
-}}
-/*@media only screen and (max-width: 1200px) {
-    body {
-        width: 100%;
-        font-size: 35px;
-    }
-    
-    h1 {
-        font-size: 90px;
-    }
-
-    header {
-        padding-bottom: 10px;
-    }
-
-    menu {
-        height: 128px;
     }
 
     #content {
+        width: 95%;
         max-width: 100%;
-        width: 100%;
-    }
-   
-    li.category {
-        margin: 30px 0px;
-        padding: 20px;
-    }
-
-    li.category li {
-        margin: 15px 0px;
-    }
-
-    a img {
-        height: 128px;
-        width: 128px;
-        margin-left: 20px;
     }
 }
-
-
-*/
