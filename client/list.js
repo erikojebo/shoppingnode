@@ -30,9 +30,7 @@ var viewModelFactory = function () {
 
 	function createShoppingListViewModel (items) {
         var categories = createCategoryViewModels(items);
-        return {
-            categories: ko.observableArray(categories)
-        };
+        return new ShoppingListViewModel(categories);
     };
 
     return {
@@ -61,9 +59,43 @@ var ItemViewModel = function (item) {
     };
 };
 
+var ShoppingListViewModel = function (categories) {
+    var self = this;
+    this.categories = ko.observableArray(categories);
+    this.clearDone = function () {
+        server.clearDone(function () {
+	        for(var i = 0; i < self.categories().length; i++) {
+
+                var category = self.categories()[i];
+                var doneItems = category.items().filter(function (item) {
+	                return item.isDone();
+                });
+                category.items.removeAll(doneItems);
+            }
+        });
+    };
+}
+
+var server = function () {
+	var clearDone = function (success) {
+        $.post('/cleardone')
+            .success(success);
+    }
+    var markAsDone = function (id) {
+
+    }
+    var getItems = function (success) {
+	    $.getJSON('/items', success);
+    }
+    return {
+        clearDone: clearDone,
+        markAsDone: markAsDone
+    };
+}();
+
 $(document).ready(function () {
-    $.getJSON('/items', function(data) {
-        shoppingListViewModel = viewModelFactory.createShoppingListViewModel(data);
+    server.getItems(function(items) {
+        shoppingListViewModel = viewModelFactory.createShoppingListViewModel(items);
         ko.applyBindings(shoppingListViewModel);
     });
 });

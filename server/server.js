@@ -24,16 +24,22 @@ app.use('/images', express.static(__dirname + '/../client/images'));
 app.use('/fonts', express.static(__dirname + '/../client/fonts'));
 app.use('/lib', express.static(__dirname + '/../client/lib'));
 app.use(express.static(__dirname + '/../client'));
+app.use(express.logger());
 
 app.get('/items', function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json'});
     db.findAll(function (items) {
         var content = JSON.stringify(items);
         response.end(content, 'utf-8');
-    }, function (error) {
-        logger.logError("findAll failed: " + error)
     });
-})
+});
+
+app.post('/cleardone', function (request, response) {
+    db.clearDone(function () {
+	    response.writeHead(200);
+        response.end();	    
+    });
+});
 
 var port = process.env.PORT || 5000;
 

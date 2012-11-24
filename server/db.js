@@ -11,8 +11,8 @@ var findAll = function (onSuccess, onError) {
         logger.logInfo("findAll found {0} items", result.rowCount)
         onSuccess(result.rows);
     };
-
-    executeQuery("SELECT * FROM List", onQuerySuccess, onError);
+    
+    executeQuery("SELECT * FROM List", onQuerySuccess, createErrorLogger("findAll", onError));
 }
 
 var clearDone = function (onSuccess, onError) {
@@ -22,8 +22,17 @@ var clearDone = function (onSuccess, onError) {
         onSuccess();
     };
 
-    executeQuery("DELETE FROM List WHERE done = true", onQuerySuccess, onError);
+    executeQuery("DELETE FROM List WHERE done = true", onQuerySuccess, createErrorLogger("clearDone", onError));
 };
+
+function createErrorLogger (methodName, onError) {
+    return function (error) {
+	    logger.logError("{0} failed: {1}", methodName, error);
+
+        if (onError)
+            onError(error);
+    };
+}
 
 function executeQuery (queryString, onSuccess, onError) {
 
