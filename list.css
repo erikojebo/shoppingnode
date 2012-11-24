@@ -155,6 +155,11 @@ a img {
 @media only screen and (max-width: 1200px) {
     body {
         width: 100%;
+
+}}
+/*@media only screen and (max-width: 1200px) {
+    body {
+        width: 100%;
         font-size: 35px;
     }
     
@@ -191,25 +196,5 @@ a img {
     }
 }
 
-@media only screen and (max-width:900px){
-    body {
-        font-size: 55px;
-        color: blue;
-    }
-}
 
-@media only screen and (max-width:800px){
-    body {
-        font-size: 55px;
-        color: red;
-    }
-}
-
-@media only screen and (max-width:600px){
-    body {
-        font-size: 55px;
-        color: yellow;
-    }
-}
-
-
+*/
