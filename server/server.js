@@ -18,12 +18,12 @@ if (process.env.ENVIRONMENT === "development") {
     logger.logInfo("Dev environment detected");
 }
 
-addFileRoute('/', './client/list.html');
+addFileRoute('/', __dirname + '/../client/list.html');
 
-app.use('/images', express.static(__dirname + '/client/images'));
-app.use('/fonts', express.static(__dirname + '/client/fonts'));
-app.use('/lib', express.static(__dirname + '/client/lib'));
-app.use(express.static(__dirname + '/client'));
+app.use('/images', express.static(__dirname + '/../client/images'));
+app.use('/fonts', express.static(__dirname + '/../client/fonts'));
+app.use('/lib', express.static(__dirname + '/../client/lib'));
+app.use(express.static(__dirname + '/../client'));
 
 app.get('/items', function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json'});
