@@ -191,8 +191,25 @@ a img {
     }
 }
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width:900px){
     body {
         font-size: 55px;
+        color: blue;
     }
 }
+
+@media only screen and (max-width:800px){
+    body {
+        font-size: 55px;
+        color: red;
+    }
+}
+
+@media only screen and (max-width:600px){
+    body {
+        font-size: 55px;
+        color: yellow;
+    }
+}
+
+
