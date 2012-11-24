@@ -14,3 +14,8 @@
     - foreman start -e my_env
       - där my_env är en vil med miljövariabler
     
+
+
+- För att kunna använda post-parametrar på ett enkelt sätt i express.js
+  måste man lägga till app.use(express.bodyParser()), och detta måste
+  göras innan första anropet till app.get/post.

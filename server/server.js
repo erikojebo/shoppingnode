@@ -8,8 +8,10 @@ function addFileRoute(requestedPath, actualPath) {
 require('./extensions.js')
 var logger = require('./logger.js');
 var express = require('express');
+var connect = require('connect');
 var fileServer = require('./file_server.js');
 var db = require('./db.js');
+
 var app = express.createServer(express.logger());
 
 logger.logInfo("Starting server...");
@@ -18,13 +20,20 @@ if (process.env.ENVIRONMENT === "development") {
     logger.logInfo("Dev environment detected");
 }
 
-addFileRoute('/', __dirname + '/../client/list.html');
+
 
 app.use('/images', express.static(__dirname + '/../client/images'));
 app.use('/fonts', express.static(__dirname + '/../client/fonts'));
 app.use('/lib', express.static(__dirname + '/../client/lib'));
 app.use(express.static(__dirname + '/../client'));
+
+app.use(express.bodyParser())
 app.use(express.logger());
+
+// Make sure this is done after the bodyParser middleware is set up
+// since this call initializes the routing, and the bodyParser must
+// be set up before that.
+addFileRoute('/', __dirname + '/../client/list.html');
 
 app.get('/items', function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json'});
@@ -36,6 +45,20 @@ app.get('/items', function (request, response) {
 
 app.post('/cleardone', function (request, response) {
     db.clearDone(function () {
+	    response.writeHead(200);
+        response.end();	    
+    });
+});
+
+app.post('/markasdone', function (request, response) {
+    db.markAsDone(request.body.id, function () {
+	    response.writeHead(200);
+        response.end();	    
+    });
+});
+
+app.post('/markasremaining', function (request, response) {
+    db.markAsRemaining(request.body.id, function () {
 	    response.writeHead(200);
         response.end();	    
     });

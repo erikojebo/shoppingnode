@@ -50,12 +50,27 @@ var CategoryViewModel = function(id, items) {
 };
 
 var ItemViewModel = function (item) {
+    var self = this;
 	this.id = item.id;
     this.category = ko.observable(item.category);
     this.isDone = ko.observable(item.done),
     this.description = ko.observable(item.description);
+    this.markAsRemaining = function () {
+	    server.markAsRemaining(this.id, function () {
+	        self.isDone(false);
+        });
+    };
+    this.markAsDone = function () {
+	    server.markAsDone(this.id, function () {
+	        self.isDone(true);
+        });
+    };
     this.toggleIsDone = function () {
-	    this.isDone(!this.isDone());
+        if (this.isDone()) {
+            this.markAsRemaining();
+        } else {
+            this.markAsDone();
+        }
     };
 };
 
@@ -80,16 +95,23 @@ var server = function () {
 	var clearDone = function (success) {
         $.post('/cleardone')
             .success(success);
-    }
-    var markAsDone = function (id) {
-
-    }
+    };
+    var markAsDone = function (id, success) {
+        $.post('/markasdone', { id: id })
+            .success(success);
+    };
+    var markAsRemaining = function (id, success) {
+        $.post('/markasremaining', { id: id })
+            .success(success);
+    };
     var getItems = function (success) {
 	    $.getJSON('/items', success);
-    }
+    };
     return {
+        getItems: getItems,
         clearDone: clearDone,
-        markAsDone: markAsDone
+        markAsDone: markAsDone,
+        markAsRemaining: markAsRemaining
     };
 }();
 
