@@ -19,3 +19,42 @@
 - För att kunna använda post-parametrar på ett enkelt sätt i express.js
   måste man lägga till app.use(express.bodyParser()), och detta måste
   göras innan första anropet till app.get/post.
+
+- Om man klonar sitt github-repo igen på ny maskin måste man lägga till
+  heroku-remoten för att allt ska funka.
+
+  - git remote add heroku git@heroku.com:appnamn.git
+
+
+
+- För att komma igång med postgres:
+
+  - sudo apt-get install postgresql-9.1
+  - change the line:
+
+    local   all             all                                     peer
+
+    to 
+
+    local   all             all                                     md5
+
+    in the file /etc/postgresql/9.1/main/pg_hba.conf
+
+  - Create a database user (-P for password prompt):
+    sudo -u postgres createuser -P someusername
+
+  - Create a database (-O to set owner):
+    sudo -u postgres createdb -O someusername somedatabasename 
+
+  - Restart postgres:
+    sudo service postgresql restart
+
+  - Connect to the new database using the new user:
+    psql -U someusername -d somedatabasename
+
+  - When in the psql console, \i /path/to/file executes sql commands from a file
+    \q exits psql
+
+
+  - För att ansluta till databasen från koden används en url med följande format
+    postgres://username:password@server/databasename
