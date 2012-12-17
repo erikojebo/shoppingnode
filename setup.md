@@ -1,3 +1,5 @@
+* Add the heroku remote:
+  git remote add heroku git@heroku.com:shoppingnode.git
 * Install postgres, create a user and database (see http://erikojebo.se/Code/Details/449)
 * Create a file called dev.env in the root folder (shoppingnode)
 * Add the following lines to the file (dev.env)

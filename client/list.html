@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width">
     <link href="list.css" rel="stylesheet" type="text/css">
     <script language="JavaScript" src="lib/underscore-min.js"></script>
@@ -14,20 +15,48 @@
     <div id="content">
       <header>
         <h1>Shopping Node</h1>
-        <menu>
-          <a id='clearDoneButton' data-bind='click: clearDone'><img src='images/metro_delete_128.png' alt='Clear done items' /></a>            
-          <a id='addItemsButton'><img src='images/metro_add_128.png' alt='Add items' /></a>
-        </menu>
       </header>
-      <ol data-bind='foreach: categories'>
+      <ol id='categories' data-bind='foreach: categories'>
         <li class='category' data-bind='css: name'>
-          <ul id='categories' data-bind='foreach: items'>
+          <ul data-bind='foreach: items'>
             <li data-bind="click: toggleIsDone">
               <span data-bind="text: description, css: { done: isDone }"></span>
             </li>
           </ul>
         </li>
       </ol>
+
+      <div id='addForm'>
+        <input type='text' id='descriptionTextbox' />
+        <img id='addButton' src='images/add_cropped.png' />
+        <ol id='categoryMenu'>
+          <li class='category0' />
+          <li class='category1' />
+          <li class='category2 selected' />
+          <li class='category3' />
+          <li class='category4' />
+          <li class='category5' />
+          <li class='category6' />
+          <li class='category7' />
+        </ol>
+        <ol id='suggestions'>
+          <li class='category0'>Mjölk</li>
+          <li class='category0'>Filmjölk</li>
+          <li class='category1'>Apelsiner</li>
+          <li class='category3'>Bröd</li>
+          <li class='category5'>Spenat</li>
+        </ol>
+      </div>
     </div>
+    <footer>
+      <menu>
+        <a id='clearDoneButton' data-bind='click: clearDone'>
+          <img src='images/delete.png' alt='Clear done items' />
+        </a>
+        <a id='addItemsButton'>
+          <img src='images/edit.png' alt='Edit list' />
+        </a>
+      </menu>
+    </footer>
   </body>
 </html>
