@@ -64,6 +64,10 @@ table {
     outline: none;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: metrophobic, sans-serif;
     background: black;
@@ -110,10 +114,6 @@ li.category li {
     user-select: none;
     user-focus: normal;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-}
-
-menu {
-    float: right;
 }
 
 a img {
@@ -205,7 +205,16 @@ a img {
     float: left;
 }
 
+@media only screen and (min-width: 701px) {
+    menu {
+        position:absolute;
+        top: 10px;
+        left: 335px;
+    }
+}
+
 @media only screen and (max-width: 700px) {
+
     body {
         width: 100%;
     }
@@ -215,4 +224,21 @@ a img {
         max-width: 100%;
         font-size: 20px;
     }
+    
+    menu {
+        position: fixed;
+        display: block;
+        bottom: 0px;
+        width: 100%;
+        background: black;
+        padding: 10px;
+    }
+
+    #addForm {
+        position: absolute;
+        top: 70px;
+        background: black;
+        margin: 0px;
+    )
+
 }

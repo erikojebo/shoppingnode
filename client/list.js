@@ -76,6 +76,8 @@ var ItemViewModel = function (item) {
 
 var ShoppingListViewModel = function (categories) {
     var self = this;
+    this.isEditing = ko.observable(false);
+    this.isLowWidth = ko.observable(false);
     this.categories = ko.observableArray(categories);
     this.clearDone = function () {
         server.clearDone(function () {
@@ -88,6 +90,14 @@ var ShoppingListViewModel = function (categories) {
                 category.items.removeAll(doneItems);
             }
         });
+    };
+    this.isEditFormVisible = ko.computed(function () {
+        console.log("edit form");
+        console.log(!self.isLowWidth() || self.isEditing());
+	    return !self.isLowWidth() || self.isEditing();
+    });
+    this.enterEditMode = function () {
+	    self.isEditing(true);
     };
 }
 
@@ -115,9 +125,27 @@ var server = function () {
     };
 }();
 
+var environment = function () {
+    var isLowWidth = function () {
+	    return $(window).width() <= 700;
+    };
+    return {
+        isLowWidth: isLowWidth
+    };
+}();
+
 $(document).ready(function () {
     server.getItems(function(items) {
         shoppingListViewModel = viewModelFactory.createShoppingListViewModel(items);
         ko.applyBindings(shoppingListViewModel);
+        updateViewport();
+    });
+
+    $(window).resize(function () {
+        updateViewport();
     });
 });
+
+function updateViewport() {
+    shoppingListViewModel.isLowWidth(environment.isLowWidth());
+}

@@ -26,7 +26,7 @@
         </li>
       </ol>
 
-      <div id='addForm'>
+      <div id='addForm' data-bind='visible: isEditFormVisible'">
         <input type='text' id='descriptionTextbox' />
         <img id='addButton' src='images/add_cropped.png' />
         <ol id='categoryMenu'>
@@ -53,7 +53,7 @@
         <a id='clearDoneButton' data-bind='click: clearDone'>
           <img src='images/delete.png' alt='Clear done items' />
         </a>
-        <a id='addItemsButton'>
+        <a id='addItemsButton' data-bind='click: enterEditMode'>
           <img src='images/edit.png' alt='Edit list' />
         </a>
       </menu>
